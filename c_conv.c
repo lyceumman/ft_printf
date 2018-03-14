@@ -161,6 +161,21 @@ int             c_con_spec(t_buf *curr, va_list ap)
     return (len);
 }
 
+int             if_locale_not_set(wchar_t *buf)
+{
+    if (*buf == 224)
+    {
+        write(1, L"�", 1);
+        free(buf);
+        return (1);
+    }
+    else
+    {
+        free(buf);
+        return (-1);
+    }
+}
+
 int             wchar_con_spec(t_buf *curr, va_list ap)
 {
     wchar_t *buf;
@@ -171,6 +186,8 @@ int             wchar_con_spec(t_buf *curr, va_list ap)
     null = 1;
     if (!(*buf = (wchar_t)va_arg(ap, wint_t)))
         null = 0;
+    if (MB_CUR_MAX == 1)
+        return (if_locale_not_set(buf));
     if (curr->width > ft_wcssize(buf))
         buf = wcs_width(curr, buf);
     if (null)
