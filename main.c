@@ -17,8 +17,9 @@
 int		main(void)
 {
     //setlocale(LC_ALL, "");
-    int ret1 = ft_printf("%C", (wchar_t)224);
-    int ret2 = printf("%C", (wchar_t)224);
+    int value = 65;
+    int ret1 = ft_printf("%C", (wchar_t)value);
+    int ret2 = printf("%C", (wchar_t)value);
     ft_printf("\nmy: ret = %d\toriginal: ret = %d\n", ret1, ret2);
     return (0);
 }

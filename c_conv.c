@@ -163,17 +163,14 @@ int             c_con_spec(t_buf *curr, va_list ap)
 
 int             if_locale_not_set(wchar_t *buf)
 {
-    if (*buf == 224)
+    if (*buf <= 255)
     {
-        write(1, L"�", 1);
+        write(1, buf, 1);
         free(buf);
         return (1);
     }
-    else
-    {
-        free(buf);
-        return (-1);
-    }
+    free(buf);
+    return (-1);
 }
 
 int             wchar_con_spec(t_buf *curr, va_list ap)
