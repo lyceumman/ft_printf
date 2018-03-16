@@ -18,6 +18,7 @@ int     percent_spec(t_buf *curr)
     int     len;
 
     buf = ft_strdup("%");
+    curr->space = 0;
     if (curr->width > 1)
         width_apply(curr, &buf);
     if (curr->zero && !curr->minus)

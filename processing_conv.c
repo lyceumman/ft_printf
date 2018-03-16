@@ -40,7 +40,7 @@ void    precision_apply(t_buf *curr, char **buf)
     i = 0;
     temp = *buf - 1;
     while (*++temp)
-        if (ft_isdigit(*temp) || ft_isalpha(*temp))
+        if (ft_isalnum(*temp) || *temp == '%')
             i++;
     if (curr->prn <= i)
         return ;

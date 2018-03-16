@@ -88,10 +88,12 @@ void    zero_apply(char **buf, t_buf *curr)
 {
     char *temp;
 
-    if (curr->space && curr->con_chr == 'd' && **buf == ' ' && ft_isdigit(*(*buf + 1)))
-        return ;
-    if (curr->space && **buf == ' ')
-        temp = *buf + 1;
+    /*if (curr->space && curr->con_chr == 'd' && **buf == ' ' && ft_isdigit(*(*buf + 1)))
+        return ;*/
+    /*if (curr->space && **buf == ' ' && (ft_atoi(*buf) || curr->con_chr == 'd'))
+        temp = *buf + 1;*/
+    if (curr->space && curr->con_chr == 'd')
+            temp = *buf + 1;
     else
         temp = *buf;
     if (!ft_strchr(temp, '-') && !ft_strchr(temp, '+'))

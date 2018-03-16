@@ -39,7 +39,7 @@ int         print_if_zero(t_buf *curr, char **buf, int checker)
 {
     int i;
 
-    if (!curr->prn && !ft_atoi(*buf) && !curr->dash)
+    if (!ft_atoi(*buf) && !curr->prn && !curr->dash)
     {
         if (checker)
         {
@@ -48,6 +48,10 @@ int         print_if_zero(t_buf *curr, char **buf, int checker)
                 ft_putchar(' ');
             return (i);
         }
+        if (curr->plus)
+            return ((int)write(1, "+", 1));
+        if (curr->space)
+            return ((int)write(1, " ", 1));
         return (0);
     }
     else
@@ -72,6 +76,8 @@ int         o_con_spec(t_buf *curr, char *buf)
         width_apply(curr, &buf);
     else
         curr->width = ft_strlen(buf);
+    if (curr->space && curr->zero)
+        space_apply(&buf);
     if (curr->zero && prn == -1 && !curr->minus)
         zero_apply(&buf, curr);
     len = print_if_zero(curr, &buf, checker);
