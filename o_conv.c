@@ -48,9 +48,9 @@ int         print_if_zero(t_buf *curr, char **buf, int checker)
                 ft_putchar(' ');
             return (i);
         }
-        if (curr->plus)
+        if (curr->plus && curr->prn)
             return ((int)write(1, "+", 1));
-        if (curr->space)
+        if (curr->space && curr->con_chr != 'o')
             return ((int)write(1, " ", 1));
         return (0);
     }
