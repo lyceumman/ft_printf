@@ -44,6 +44,7 @@ typedef	struct	s_buf
 	int		l;
 	int		j;
 	int		z;
+    int     L;
     char	con_chr;
 }				t_buf;
 

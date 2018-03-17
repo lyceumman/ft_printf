@@ -35,9 +35,9 @@ void    afterflags(t_buf *curr, char **s)
 
 void	miss_trash(t_buf *curr, char **s)
 {
-	while (ft_strchr("0123456789+-#.", **s) && **s != 0)
+	while (ft_strchr("0123456789+-#.tq", **s) && **s != 0)
 		(*s)++;
-	if (curr->zero > 1)
+    if (curr->zero > 1)
 		curr->zero = 0;
 	if (curr->dash > 1)
 		curr->dash = 0;
@@ -136,6 +136,7 @@ void		fill_len_mod(t_buf *curr, char **s)
 	curr->l = 0;
 	curr->j = 0;
 	curr->z = 0;
+    curr->L = 0;
     while (*s)
 	{
 		if (!ft_strncmp(*s, "hh", 2) && (*s += 2))
@@ -150,6 +151,8 @@ void		fill_len_mod(t_buf *curr, char **s)
 			curr->j = 1;
 		else if (!ft_strncmp(*s, "z", 1) && (*s)++)
 			curr->z = 1;
+		else if (!ft_strncmp(*s, "L", 1) && (*s)++)
+			curr->L = 1;
 		else
 			break ;
 	}
