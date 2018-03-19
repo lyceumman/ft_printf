@@ -6,7 +6,7 @@
 #    By: oleshche <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/03/01 16:07:47 by oleshche          #+#    #+#              #
-#    Updated: 2018/03/19 18:15:59 by oleshche         ###   ########.fr        #
+#    Updated: 2018/03/17 18:02:02 by oleshche         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,7 +23,7 @@ FUNC = 	ft_strcmp.o ft_strlen.o ft_memset.o ft_bzero.o ft_memcpy.o ft_memccpy.o 
 		ft_lstiter.o ft_lstmap.o ft_lstsplit.o ft_strrev.o ft_lstcount.o ft_lstaddback.o ft_isspace.o		\
 
 SRC =	addition.o c_conv.o di_conv.o fill_struct.o flags.o ft_printf.o n_conv.o o_conv.o processing_conv.o\
-		s_conv.o s_wchar_conv.o u_conv.o x_conv.o pointer_percent.o											\
+		s_conv.o s_wchar_conv.o u_conv.o x_conv.o pointer_percent.o	addition2.o wchar_conv.o funcs_for_wchar.o\
 
 CFLAGS = -c -Wall -Wextra -Werror
 
@@ -36,6 +36,15 @@ all: $(NAME)
 $(NAME): $(FUNC) $(SRC)
 	ar rc $(NAME) $(FUNC) $(SRC)
 	ranlib $(NAME)
+
+funcs_for_wchar.o: funcs_for_wchar.c
+	gcc $(CFLAGS) funcs_for_wchar.c
+
+wchar_conv.o: wchar_conv.c
+	gcc $(CFLAGS) wchar_conv.c
+
+addition2.o: addition2.c
+	gcc $(CFLAGS) addition2.c
 
 addition.o: addition.c
 	gcc $(CFLAGS) addition.c
