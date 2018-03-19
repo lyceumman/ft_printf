@@ -6,7 +6,7 @@
 #    By: oleshche <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/03/01 16:07:47 by oleshche          #+#    #+#              #
-#    Updated: 2018/03/11 15:27:25 by oleshche         ###   ########.fr        #
+#    Updated: 2018/03/19 18:15:59 by oleshche         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,7 +23,7 @@ FUNC = 	ft_strcmp.o ft_strlen.o ft_memset.o ft_bzero.o ft_memcpy.o ft_memccpy.o 
 		ft_lstiter.o ft_lstmap.o ft_lstsplit.o ft_strrev.o ft_lstcount.o ft_lstaddback.o ft_isspace.o		\
 
 SRC =	addition.o c_conv.o di_conv.o fill_struct.o flags.o ft_printf.o n_conv.o o_conv.o processing_conv.o\
-		s_conv.o s_wchar_conv.o u_conv.o x_conv.o pointer-percent.o											\
+		s_conv.o s_wchar_conv.o u_conv.o x_conv.o pointer_percent.o											\
 
 CFLAGS = -c -Wall -Wextra -Werror
 
@@ -76,8 +76,8 @@ x_conv.o: x_conv.c
 c_conv.o: c_conv.c
 	gcc $(CFLAGS) c_conv.c
 
-pointer-percent.o: pointer-percent.c
-	gcc $(CFLAGS) pointer-percent.c
+pointer_percent.o: pointer_percent.c
+	gcc $(CFLAGS) pointer_percent.c
 
 ft_lstcount.o: $(LIBDIR)ft_lstcount.c
 	gcc $(CFLAGS) $(LIBDIR)ft_lstcount.c
