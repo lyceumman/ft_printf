@@ -12,10 +12,10 @@
 
 #include "ft_printf.h"
 
-static void main_magic(va_list ap, char **s, int *ret)
+static void	main_magic(va_list ap, char **s, int *ret)
 {
-	t_buf curr;
-	int len;
+	t_buf	curr;
+	int		len;
 
 	fill_struct(s, &curr);
 	len = choose_type(&curr, ap, *ret);
@@ -25,7 +25,24 @@ static void main_magic(va_list ap, char **s, int *ret)
 		*ret += len;
 }
 
-int		ft_printf(const char *restrict format, ...)
+int			what_char(char **s)
+{
+	if (**s == '\n' && (*s)++)
+		return ((int)write(1, "\n", 1));
+	if (**s == '\t' && (*s)++)
+		return ((int)write(1, "\t", 1));
+	if (**s == '\v' && (*s)++)
+		return ((int)write(1, "\v", 1));
+	if (**s == '\f' && (*s)++)
+		return ((int)write(1, "\f", 1));
+	if (**s == '\r' && (*s)++)
+		return ((int)write(1, "\r", 1));
+	if (**s == '\b' && (*s)++)
+		return ((int)write(1, "\b", 1));
+	return (0);
+}
+
+int			ft_printf(const char *restrict format, ...)
 {
 	int		ret;
 	va_list	ap;
@@ -36,12 +53,12 @@ int		ft_printf(const char *restrict format, ...)
 	ret = 0;
 	while (*str)
 	{
-        if (ret == -1)
-            return (ret);
+		if (ret == -1)
+			return (ret);
 		if (*str == '%' && !*(str + 1))
 			str++;
 		else if (*str == '%')
-			main_magic(ap, &str ,&ret);
+			main_magic(ap, &str, &ret);
 		else if (what_char(&str))
 			ret++;
 		else if (ft_isprint(*str) && *str != '%' && (++ret))

@@ -12,14 +12,14 @@
 
 #include "ft_printf.h"
 
-char    *choose_size_u(t_buf *curr, va_list ap)
+char	*choose_size_u(t_buf *curr, va_list ap)
 {
-	char    *buf;
+	char	*buf;
 
 	if (curr->h == 1 && curr->con_chr != 'U')
 		buf = ft_itoa_base((unsigned short)va_arg(ap, unsigned int), 10);
 	else if (curr->h == 2 && curr->con_chr != 'U')
-		buf = ft_itoa_base((unsigned char)va_arg(ap,unsigned int), 10);
+		buf = ft_itoa_base((unsigned char)va_arg(ap, unsigned int), 10);
 	else if (curr->l == 1 || curr->con_chr == 'U')
 		buf = ft_itoa_base_unsigned(va_arg(ap, unsigned long), 10);
 	else if (curr->l == 2)
@@ -33,9 +33,9 @@ char    *choose_size_u(t_buf *curr, va_list ap)
 	return (buf);
 }
 
-int     u_con_spec(t_buf *curr, char *buf)
+int		u_con_spec(t_buf *curr, char *buf)
 {
-	int len;
+	int	len;
 
 	precision_apply(curr, &buf);
 	if (ft_strequ(buf, "0") && !curr->prn)
@@ -50,4 +50,34 @@ int     u_con_spec(t_buf *curr, char *buf)
 	len = (int)ft_strlen(buf);
 	free(buf);
 	return (len);
+}
+
+void	afterflags(t_buf *curr, char **s)
+{
+	while (ft_strchr(".123456789", **s))
+		(*s)++;
+	while (ft_strchr("+#0 ", **s) && **s)
+	{
+		if (**s == '#')
+			curr->dash++;
+		if (**s == '+')
+			curr->plus++;
+		(*s)++;
+	}
+}
+
+void	miss_trash(t_buf *curr, char **s)
+{
+	while (ft_strchr("0123456789+-#.tq", **s) && **s != 0)
+		(*s)++;
+	if (curr->zero > 1)
+		curr->zero = 0;
+	if (curr->dash > 1)
+		curr->dash = 0;
+	if (curr->plus > 1)
+		curr->plus = 0;
+	if (curr->minus > 1)
+		curr->minus = 0;
+	if (curr->space > 1)
+		curr->space = 0;
 }

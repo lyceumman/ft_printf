@@ -12,34 +12,55 @@
 
 #include "ft_printf.h"
 
-int     s_con_spec(t_buf *curr, va_list ap)
+int		s_con_spec(t_buf *curr, va_list ap)
 {
-    int len;
-    char *buf;
-    if (!(buf = (va_arg(ap, char *))))
-        buf = ft_strdup("(null)");
-    else
+	int		len;
+	char	*buf;
+
+	if (!(buf = (va_arg(ap, char *))))
+		buf = ft_strdup("(null)");
+	else
 		buf = ft_strdup(buf);
-    precision_s(curr->prn, &buf);
-    if (curr->width > ft_strlen(buf))
-        width_apply(curr, &buf);
-    else
-        curr->width = ft_strlen(buf);
-    if (curr->zero && !curr->minus)
-        zero_apply(&buf, curr);
-    ft_putstr(buf);
-    len = (int)ft_strlen(buf);
-    free(buf);
-    return (len);
+	precision_s(curr->prn, &buf);
+	if (curr->width > ft_strlen(buf))
+		width_apply(curr, &buf);
+	else
+		curr->width = ft_strlen(buf);
+	if (curr->zero && !curr->minus)
+		zero_apply(&buf, curr);
+	ft_putstr(buf);
+	len = (int)ft_strlen(buf);
+	free(buf);
+	return (len);
 }
 
-void    precision_s(int prn, char **buf)
+void	precision_s(int prn, char **buf)
 {
-    char *temp;
+	char	*temp;
 
-    if (ft_strlen(*buf) <= (size_t)prn || prn == -1)
-        return ;
-    temp = ft_strsub(*buf, 0, (size_t)prn);
-    free(*buf);
-    *buf = temp;
+	if (ft_strlen(*buf) <= (size_t)prn || prn == -1)
+		return ;
+	temp = ft_strsub(*buf, 0, (size_t)prn);
+	free(*buf);
+	*buf = temp;
+}
+
+void	*ft_wcsset(void *b, int c, size_t len)
+{
+	wchar_t	*temp;
+
+	temp = b;
+	while (len--)
+		*temp++ = (wchar_t)c;
+	return (b);
+}
+
+size_t	ft_wcssize(wchar_t *s)
+{
+	size_t	size;
+
+	size = 0;
+	while (*s)
+		size += ft_wchar_size(*s++);
+	return (size);
 }

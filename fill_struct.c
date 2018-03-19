@@ -15,46 +15,13 @@
 static void	con_spec(t_buf *curr, char **s)
 {
 	curr->con_chr = **s;
-    if (**s)
-        (*s)++;
-}
-
-void    afterflags(t_buf *curr, char **s)
-{
-	while (ft_strchr(".123456789", **s))
-        (*s)++;
-    while (ft_strchr("+#0 ", **s) && **s)
-    {
-        if (**s == '#')
-            curr->dash++;
-        if (**s == '+')
-            curr->plus++;
-        (*s)++;
-    }
-}
-
-void	miss_trash(t_buf *curr, char **s)
-{
-	while (ft_strchr("0123456789+-#.tq", **s) && **s != 0)
+	if (**s)
 		(*s)++;
-    if (curr->zero > 1)
-		curr->zero = 0;
-	if (curr->dash > 1)
-		curr->dash = 0;
-	if (curr->plus > 1)
-		curr->plus = 0;
-	if (curr->minus > 1)
-		curr->minus = 0;
-	if (curr->space > 1)
-		curr->space = 0;
 }
 
-void    fill_struct(char **s, t_buf *curr)
+void		fill_struct(char **s, t_buf *curr)
 {
 	(*s)++;
-	fill_arg_index(*s, curr);
-	if (curr->arg_index)
-		*s += nbr_len(curr->arg_index) + 1;
 	*s += fill_flags(curr, *s);
 	*s += fill_width_prn(curr, *s);
 	fill_len_mod(curr, s);
@@ -66,20 +33,7 @@ void    fill_struct(char **s, t_buf *curr)
 	con_spec(curr, s);
 }
 
-void	fill_arg_index(char *s, t_buf *curr)
-{
-	char	*str;
-
-	str = s;
-	while (ft_isdigit(*str))
-		str++;
-	if (*str == '$')
-		curr->arg_index = ft_atoi(s);
-	else
-		curr->arg_index = 0;
-}
-
-int		fill_flags(t_buf *curr, char *s)
+int			fill_flags(t_buf *curr, char *s)
 {
 	curr->dash = 0;
 	curr->zero = 0;
@@ -103,25 +57,26 @@ int		fill_flags(t_buf *curr, char *s)
 	return (curr->dash + curr->zero + curr->minus + curr->space + curr->plus);
 }
 
-int		fill_width_prn(t_buf *curr, char *s)
+int			fill_width_prn(t_buf *curr, char *s)
 {
 	int	len;
 
-    len = 0;
-    if (ft_atoi(s))
+	len = 0;
+	if (ft_atoi(s))
 	{
 		curr->width = (size_t)ft_atoi(s);
 		len = nbr_len((int)curr->width);
 	}
 	else
-	    curr->width = 0;
+		curr->width = 0;
 	s += len;
-	if (*s == '.' && ft_strchr("sSpdDioOuUxXcC%#0- +.123456789", *(s + 1)) && ++len)
+	if (*s == '.' && ft_strchr("sSpdDioOuUxXcC%#0- +.123456789",
+		*(s + 1)) && ++len)
 	{
 		s++;
 		curr->prn = ft_atoi(s);
-        if (*s == '0')
-            len++;
+		if (*s == '0')
+			len++;
 		if (curr->prn)
 			len += nbr_len(curr->prn);
 	}
@@ -136,8 +91,8 @@ void		fill_len_mod(t_buf *curr, char **s)
 	curr->l = 0;
 	curr->j = 0;
 	curr->z = 0;
-    curr->L = 0;
-    while (*s)
+	curr->big_l = 0;
+	while (*s)
 	{
 		if (!ft_strncmp(*s, "hh", 2) && (*s += 2))
 			curr->h = 2;
@@ -152,7 +107,7 @@ void		fill_len_mod(t_buf *curr, char **s)
 		else if (!ft_strncmp(*s, "z", 1) && (*s)++)
 			curr->z = 1;
 		else if (!ft_strncmp(*s, "L", 1) && (*s)++)
-			curr->L = 1;
+			curr->big_l = 1;
 		else
 			break ;
 	}

@@ -14,7 +14,7 @@
 
 void	dash_apply(t_buf *curr, char **buf)
 {
-	char *temp;
+	char	*temp;
 
 	temp = ft_strnew(ft_strlen(*buf) + 2);
 	ft_memcpy(temp + 2, *buf, ft_strlen(*buf));
@@ -27,14 +27,16 @@ void	dash_apply(t_buf *curr, char **buf)
 	*buf = temp;
 }
 
-char    *choose_size_x(t_buf *curr, va_list ap)
+char	*choose_size_x(t_buf *curr, va_list ap)
 {
-	char    *buf;
+	char	*buf;
 
 	if (curr->h == 1)
-		buf = ft_itoa_base_unsigned((unsigned short)va_arg(ap, unsigned int), 16);
+		buf = ft_itoa_base_unsigned((unsigned short)va_arg(ap, unsigned int),
+		16);
 	else if (curr->h == 2)
-		buf = ft_itoa_base_unsigned((unsigned char)va_arg(ap,unsigned int), 16);
+		buf = ft_itoa_base_unsigned((unsigned char)va_arg(ap, unsigned int),
+		16);
 	else if (curr->l == 1)
 		buf = ft_itoa_base_unsigned(va_arg(ap, unsigned long), 16);
 	else if (curr->l == 2)
@@ -50,8 +52,8 @@ char    *choose_size_x(t_buf *curr, va_list ap)
 
 void	x_zero_apply(t_buf *curr, char **buf)
 {
-	int i;
-	char *temp;
+	int		i;
+	char	*temp;
 
 	i = 0;
 	temp = *buf;
@@ -74,15 +76,15 @@ void	x_zero_apply(t_buf *curr, char **buf)
 	}
 }
 
-int     x_con_spec(t_buf *curr, char *buf)
+int		x_con_spec(t_buf *curr, char *buf)
 {
-	int i;
-	int len;
+	int	i;
+	int	len;
 
 	i = -1;
 	if (curr->con_chr == 'x')
-        while (buf[++i])
-		    buf[i] = (char)ft_tolower(buf[i]);
+		while (buf[++i])
+			buf[i] = (char)ft_tolower(buf[i]);
 	if (curr->prn == 0 && ft_strequ(buf, "0"))
 		*buf = '\0';
 	else if (curr->prn != -1)

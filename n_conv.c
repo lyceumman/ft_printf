@@ -12,29 +12,29 @@
 
 #include "ft_printf.h"
 
-intmax_t *choose_size_n(t_buf *curr, va_list ap)
+intmax_t	*choose_size_n(t_buf *curr, va_list ap)
 {
-    intmax_t *nbr;
+	intmax_t	*nbr;
 
-    if (curr->h == 1)
-        nbr = (intmax_t*)va_arg(ap, short*);
-    else if (curr->h == 2)
-        nbr = (intmax_t*)va_arg(ap, signed char*);
-    else if (curr->l == 1)
-        nbr = va_arg(ap, long*);
-    else if (curr->l == 2)
-        nbr = (intmax_t*)va_arg(ap, long long*);
-    else if (curr->j == 1)
-        nbr = va_arg(ap, intmax_t*);
-    else if (curr->z == 1)
-        nbr = (intmax_t*)va_arg(ap, long long*);
-    else
-        nbr = (intmax_t*)va_arg(ap, int*);
-    return (nbr);
+	if (curr->h == 1)
+		nbr = (intmax_t*)va_arg(ap, short*);
+	else if (curr->h == 2)
+		nbr = (intmax_t*)va_arg(ap, signed char*);
+	else if (curr->l == 1)
+		nbr = va_arg(ap, long*);
+	else if (curr->l == 2)
+		nbr = (intmax_t*)va_arg(ap, long long*);
+	else if (curr->j == 1)
+		nbr = va_arg(ap, intmax_t*);
+	else if (curr->z == 1)
+		nbr = (intmax_t*)va_arg(ap, long long*);
+	else
+		nbr = (intmax_t*)va_arg(ap, int*);
+	return (nbr);
 }
 
-int		n_con_spec(intmax_t *nbr, int ret)
+int			n_con_spec(intmax_t *nbr, int ret)
 {
-    *nbr = ret;
-    return (0);
+	*nbr = ret;
+	return (0);
 }
