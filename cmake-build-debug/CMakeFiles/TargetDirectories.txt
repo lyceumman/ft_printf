@@ -1,0 +1,3 @@
+/Users/oleshche/Projects/ololo/cmake-build-debug/CMakeFiles/rebuild_cache.dir
+/Users/oleshche/Projects/ololo/cmake-build-debug/CMakeFiles/edit_cache.dir
+/Users/oleshche/Projects/ololo/cmake-build-debug/CMakeFiles/ololo.dir
