@@ -20,13 +20,5 @@ void	ft_putstr(char const *s)
 		return ;
 	str = (char*)s;
 	while (*str)
-	{
-		if((*str) < 0)
-		{
-			write(1, str++, 2);
-			str++;
-		}
-		else
-			write(1, str++, 1);
-	}
+		write(1, str++, 1);
 }
