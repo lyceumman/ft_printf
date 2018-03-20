@@ -11,14 +11,12 @@
 /* ************************************************************************** */
 
 #include "ft_printf.h"
-#include <locale.h>
 
 int		s_con_spec(t_buf *curr, va_list ap)
 {
 	int		len;
 	char	*buf;
 
-	printf("Ololo, it's <s> small conv! Locale is %s\n", setlocale(LC_CTYPE, NULL));
 	if (!(buf = (va_arg(ap, char *))))
 		buf = ft_strdup("(null)");
 	else

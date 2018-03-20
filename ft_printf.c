@@ -61,7 +61,7 @@ int			ft_printf(const char *restrict format, ...)
 			main_magic(ap, &str, &ret);
 		else if (what_char(&str))
 			ret++;
-		else if (ft_isprint(*str) && *str != '%' && (++ret))
+		else if (*str != '%' && (++ret))
 			ft_putchar(*str++);
 		else
 			str++;
