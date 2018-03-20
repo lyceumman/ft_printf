@@ -29,8 +29,8 @@ int		s_con_spec(t_buf *curr, va_list ap)
 //	if (curr->zero && !curr->minus)
 //		zero_apply(&buf, curr);
 //	ft_putstr(buf);
-	printf("%s", buf);
-//	write(1, buf , ft_strlen(buf));
+//	printf("%s", buf);
+	write(1, buf , ft_strlen(buf));
 	len = (int)ft_strlen(buf);
 	free(buf);
 	return (len);
