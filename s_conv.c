@@ -19,8 +19,8 @@ int		s_con_spec(t_buf *curr, va_list ap)
 
 	if (!(buf = (va_arg(ap, char *))))
 		buf = ft_strdup("(null)");
-	else
-		buf = ft_strdup(buf);
+//	else
+//		buf = ft_strdup(buf);
 //	precision_s(curr->prn, &buf);
 //	if (curr->width > ft_strlen(buf))
 //		width_apply(curr, &buf);
@@ -29,10 +29,10 @@ int		s_con_spec(t_buf *curr, va_list ap)
 //	if (curr->zero && !curr->minus)
 //		zero_apply(&buf, curr);
 //	ft_putstr(buf);
-//	printf("%s", buf);
-	write(1, buf , ft_strlen(buf));
+	printf("%s", buf);
+//	write(1, buf , ft_strlen(buf));
 	len = (int)ft_strlen(buf);
-	free(buf);
+//	free(buf);
 	return (len);
 }
 
