@@ -64,11 +64,14 @@ int			only_chars(wchar_t *buf)
 	return (0);
 }
 
+#include <locale.h>
+
 int			s_wchar_con(t_buf *curr, va_list ap)
 {
 	wchar_t	*buf;
 	int		len;
 
+	printf("Ololo, it's <S> conv! Locale is %s\n", setlocale(LC_CTYPE, NULL));
 	if (!(buf = ft_wcsdup(va_arg(ap, wchar_t*))))
 		buf = ft_wcsdup(L"(null)");
 	if (MB_CUR_MAX == 1 && only_chars(buf))
